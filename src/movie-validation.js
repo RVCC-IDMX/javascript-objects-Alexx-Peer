@@ -7,11 +7,14 @@
  */
 
 // Toggle examples on or off.
-const SHOW_EXAMPLES = false;
+const SHOW_EXAMPLES = true;
 
 function isObject(value) {
   // implement code here
   // Check if the value is an object and not null.
+  if (value === null || typeof value !== 'object') return false;
+  else
+    return true;
 }
 
 /**
@@ -24,6 +27,10 @@ function isObject(value) {
  */
 export function hasPropertyOfType(obj, prop, expectedType) {
   // implement code here
+  if (!isObject(obj) || typeof obj[prop] !== expectedType) return false;
+  else
+    return true;
+
 }
 
 /**
@@ -34,6 +41,12 @@ export function hasPropertyOfType(obj, prop, expectedType) {
  */
 export function getMovieTitle(movie) {
   // implement code here
+  if (!isObject(movie) || !movie.title) {
+    console.log("getMovieTitle: Invalid movie object or title missing.");
+    return '';
+  }
+  else
+    return movie.title;
 }
 
 /**
@@ -46,6 +59,12 @@ export function getMovieYear(movie) {
   // Use bracket notation as an alternative approach to property access.
   // While dot notation is common for fixed property names, bracket notation is useful when property names are dynamic.
   // implement code here
+  if (!movie['year']) {
+    console.log("getMovieYear: Invalid movie object or year missing.");
+    return 0;
+  }
+  else
+    return movie['year'];
 }
 
 /**
@@ -56,6 +75,12 @@ export function getMovieYear(movie) {
  */
 export function isMovieClassic(movie) {
   // implement code here
+  if (!movie['year'] || movie['year'] > 2000) {
+    console.log("isMovieClassic: Movie object invalid or missing year.");
+    return false;
+  }
+  else
+    return true;
 }
 
 /**
@@ -66,6 +91,11 @@ export function isMovieClassic(movie) {
  */
 export function getMovieKeys(movie) {
   // implement code here
+  if (!movie || typeof movie !== 'object') {
+    console.log("getMovieKeys: Provided input is not a valid object.");
+    return [];
+  } else
+    return Object.keys(movie);
 }
 
 /**
@@ -76,6 +106,12 @@ export function getMovieKeys(movie) {
  */
 export function getMoviePropertiesCount(movie) {
   // implement code here
+  if (!movie || typeof movie !== 'object') {
+    console.log("getMoviePropertiesCount: Provided input is not a valid object.");
+    return 0;
+  }
+  else
+    return Object.keys(movie).length;
 }
 
 // --------------------

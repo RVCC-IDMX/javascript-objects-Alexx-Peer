@@ -8,7 +8,7 @@
  */
 
 // Toggle examples on or off.
-const SHOW_EXAMPLES = false;
+const SHOW_EXAMPLES = true;
 
 const allowedGenres = ["Animation", "Family", "Action", "Comedy", "Drama", "Sci-Fi"];
 
@@ -23,8 +23,10 @@ export function setMovieRating(movie, rating) {
 
   // implement code here
   // Use dot notation to update the rating.
-
-}
+  if (!movie || typeof movie !== 'object' || typeof rating !== 'number') return movie;
+  movie.rating = rating;
+  return movie;
+};
 
 /**
  * Updates the movie genre only if the new genre is in the allowed list.
@@ -37,6 +39,11 @@ export function addMovieGenre(movie, genre) {
 
   // implement code here
   // Validate the new genre against the allowedGenres array.
+  if (!movie || typeof movie !== 'object' || typeof genre !== 'string') return movie;
+  if (!allowedGenres.includes(genre)) return movie;
+
+  movie.genre = genre;
+  return movie;
 
 }
 
@@ -50,7 +57,9 @@ export function removeDirectorProperty(movie) {
 
   // implement code here
   // Use the delete operator to remove the property.
-
+  if (!movie || typeof movie !== 'object') return movie;
+  delete movie.director;
+  return movie;
 }
 
 /**
@@ -62,6 +71,9 @@ export function removeDirectorProperty(movie) {
  */
 export function addCastMember(movie, newMember) {
   // implement code here
+  if (!movie || typeof movie !== 'object' || typeof newMember !== 'string' || !Array.isArray(movie.cast)) return movie;
+  movie.cast.push(newMember);
+  return movie;
 }
 
 /**
@@ -72,6 +84,7 @@ export function addCastMember(movie, newMember) {
 export function getAllowedGenres() {
   // implement code here
   // Return a copy so external code can't modify the private array.
+  return [...allowedGenres];
 }
 
 // --------------------

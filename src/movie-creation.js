@@ -76,7 +76,7 @@ Cast    : ${Array.isArray(movie.cast) && movie.cast.length ? movie.cast.join(', 
 // --------------------
 
 // Toggle examples on or off.
-const SHOW_EXAMPLES = false;
+const SHOW_EXAMPLES = true;
 
 if (SHOW_EXAMPLES) {
   // Creating a movie using default values (empty strings, 0, empty array).
